@@ -510,7 +510,7 @@ export default class Dropdown extends PureComponent {
 
         {...props}
 
-        value={title}
+        defaultValue={title}
         editable={false}
         onChangeText={undefined}
         renderAccessory={renderAccessory}
