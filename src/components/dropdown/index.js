@@ -192,7 +192,10 @@ export default class Dropdown extends PureComponent {
   componentWillReceiveProps({ value }) {
     if (value !== this.props.value) {
       this.setState({ value });
-      this.textFieldRef.current.setValue(value);
+    }
+    let textField = this.textFieldRef.current;
+    if (textField) {
+      textField.setValue(value);
     }
   }
 
