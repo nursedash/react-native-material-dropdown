@@ -167,6 +167,7 @@ export default class Dropdown extends PureComponent {
     this.updateContainerRef = this.updateRef.bind(this, 'container');
     this.updateScrollRef = this.updateRef.bind(this, 'scroll');
 
+    this.textFieldRef = React.createRef()
     this.renderAccessory = this.renderAccessory.bind(this);
     this.renderItem = this.renderItem.bind(this);
 
@@ -191,6 +192,7 @@ export default class Dropdown extends PureComponent {
   componentWillReceiveProps({ value }) {
     if (value !== this.props.value) {
       this.setState({ value });
+      this.textFieldRef.current.setValue(value);
     }
   }
 
@@ -505,12 +507,13 @@ export default class Dropdown extends PureComponent {
 
     return (
       <TextField
+        ref={this.textFieldRef}
         label=''
         labelHeight={dropdownOffset.top - Platform.select({ ios: 1, android: 2 })}
 
         {...props}
 
-        defaultValue={title}
+        value={title}
         editable={false}
         onChangeText={undefined}
         renderAccessory={renderAccessory}
